@@ -28,7 +28,7 @@ Electronics are intentionally kept minimal (Pi, Microphone, Battery, Battery Cha
 ### Hardware List
 
 - Case
-  - 3D printed parts ([STL files](https://github.com/liltom-eth/pi-pin/blob/main/README.md))
+  - 3D printed parts ([STEP files](https://github.com/liltom-eth/pi-pin/blob/main/step))
   - M1x7mm screws x 4
 - [Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/)
   - 65mm × 30mm
