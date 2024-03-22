@@ -82,8 +82,8 @@ The graph below shows all wiring you need for Pi Pin.
 
    The power module also provides a USB-C port for you to charging the battery.
 
-   | ![img](https://i.imgur.com/Sv59xWT.png) | ![IMG_2598_s](/Users/tom/Desktop/pi-pin-pics/IMG_2598_s.jpg) |
-   | --------------------------------------- | ------------------------------------------------------------ |
+   | ![img](https://i.imgur.com/Sv59xWT.png) | ![IMG_2598_s](https://i.imgur.com/zFBTA5c.jpeg) |
+   | --------------------------------------- | ----------------------------------------------- |
 
    We also add a switch [Panel Slide Switch](https://www.amazon.com/dp/B08SLPWDR9?ref=ppx_yo2ov_dt_b_product_details&th=1) between power module 5V `+` and Pi 5V header, which helps turn on / turn off the whole pin system. 
 
@@ -101,8 +101,8 @@ The graph below shows all wiring you need for Pi Pin.
 
    The graph left below shows the modules (wiring) fitting in the case.
 
-| ![IMG_7143](/Users/tom/Desktop/pi-pin-pics/IMG_7143.jpg) | ![IMG_3725](https://i.imgur.com/O7UJOI4.jpeg) |
-| -------------------------------------------------------- | --------------------------------------------- |
+| ![IMG_7143](https://i.imgur.com/UIYWVhd.jpeg) | ![IMG_3725](https://i.imgur.com/O7UJOI4.jpeg) |
+| --------------------------------------------- | --------------------------------------------- |
 
 Then you can combine two parts and use four M1x7mm screws to fasten them.
 
