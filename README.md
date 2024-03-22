@@ -14,7 +14,7 @@
 
 The enclosure of Pi Pin is designed around the Raspberry Pi Zero, Microphone and battery to ensure (relatively) compact physical dimensions.
 
-![IMG_3720](https://i.imgur.com/8WNAKEh.jpeg)
+![IMG_3720](https://i.imgur.com/NZmAXCN.jpeg)
 
 Electronics are intentionally kept minimal (Pi, Microphone, Battery, Battery Charging Module) and most of the parts are either 3D printable or available as off-the-shelf products.
 
@@ -38,18 +38,76 @@ Electronics are intentionally kept minimal (Pi, Microphone, Battery, Battery Cha
   - Size unknown
 - Battery
   - 3.7V 600mAh 702030 Lithium Polymer
-  - Temu discontinued, Can be found everywhere, [Aliexpress](https://www.aliexpress.us/item/3256806102198497.html?src=google&src=google&albch=shopping&acnt=708-803-3821&slnk=&plac=&mtctp=&albbt=Google_7_shopping&albagn=888888&isSmbAutoCall=false&needSmbHouyi=false&albcp=20123152476&albag=&trgt=&crea=en3256806102198497&netw=x&device=c&albpg=&albpd=en3256806102198497&gad_source=1&gclid=CjwKCAjwte-vBhBFEiwAQSv_xRsccW7pTkCGBeYwrlAua_-4K2JR1EvW3KQWdi5Rkl47-qrVKlCvzhoCUtwQAvD_BwE&gclsrc=aw.ds&aff_fcid=e504ff0d30804237976584ac28861318-1711069940562-07127-UneMJZVf&aff_fsk=UneMJZVf&aff_platform=aaf&sk=UneMJZVf&aff_trace_key=e504ff0d30804237976584ac28861318-1711069940562-07127-UneMJZVf&terminal_id=aa26aeb9b4294a0aace4b0a9f4391832&afSmartRedirect=y&gatewayAdapt=glo2usa)
+  - Temu discontinued, [Aliexpress](https://www.aliexpress.us/item/3256806102198497.html?src=google&src=google&albch=shopping&acnt=708-803-3821&slnk=&plac=&mtctp=&albbt=Google_7_shopping&albagn=888888&isSmbAutoCall=false&needSmbHouyi=false&albcp=20123152476&albag=&trgt=&crea=en3256806102198497&netw=x&device=c&albpg=&albpd=en3256806102198497&gad_source=1&gclid=CjwKCAjwte-vBhBFEiwAQSv_xRsccW7pTkCGBeYwrlAua_-4K2JR1EvW3KQWdi5Rkl47-qrVKlCvzhoCUtwQAvD_BwE&gclsrc=aw.ds&aff_fcid=e504ff0d30804237976584ac28861318-1711069940562-07127-UneMJZVf&aff_fsk=UneMJZVf&aff_platform=aaf&sk=UneMJZVf&aff_trace_key=e504ff0d30804237976584ac28861318-1711069940562-07127-UneMJZVf&terminal_id=aa26aeb9b4294a0aace4b0a9f4391832&afSmartRedirect=y&gatewayAdapt=glo2usa)
   - 20mm x 30mm x 7mm
 - Switch
   - SS12F15 Panel Slide Switch 
   - [Amazon](https://www.amazon.com/dp/B08SLPWDR9?ref=ppx_yo2ov_dt_b_product_details&th=1)
   - Size unknown
-- Audio
+- Microphone
   - Adafruit I2S MEMS Microphone Breakout - SPH0645LM4H
   - [Adafruit](https://www.adafruit.com/product/3421)
   - 16.7mm x 12.7mm x 1.8mm
 
 ### The Assembly
+
+The graph below shows all wiring you need for Pi Pin.
+
+![IMG_3720](https://i.imgur.com/NZmAXCN.jpeg)
+
+#### Wiring Checklist
+
+| **From**                | **To**             |
+| ----------------------- | ------------------ |
+| Slide Switch right pin  | Pi 5V (pin 2)      |
+| Slide Switch middle pin | Power Module 5V +  |
+| Power Module 5V -       | Pi GND (pin 6)     |
+| Power Module 3.7V +     | Battery +          |
+| Power Module 3.7V -     | Battery -          |
+| Mic GND                 | Pi GND (pin 6)     |
+| Mic 3V                  | Pi 3.3V (pin 1)    |
+| Mic BCLK                | Pi PCM 18 (pin 12) |
+| Mic LRCL                | Pi PCM 19 (pin 35) |
+| Mic DOUT                | Pi PCM 20 (pin 38) |
+
+#### Step by Step Assembly
+
+1. Battery: 
+
+   We use a [3.7V 600mAh 702030 Lithium](https://www.aliexpress.us/item/3256806102198497.html?src=google&src=google&albch=shopping&acnt=708-803-3821&slnk=&plac=&mtctp=&albbt=Google_7_shopping&albagn=888888&isSmbAutoCall=false&needSmbHouyi=false&albcp=20123152476&albag=&trgt=&crea=en3256806102198497&netw=x&device=c&albpg=&albpd=en3256806102198497&gad_source=1&gclid=CjwKCAjwte-vBhBFEiwAQSv_xRsccW7pTkCGBeYwrlAua_-4K2JR1EvW3KQWdi5Rkl47-qrVKlCvzhoCUtwQAvD_BwE&gclsrc=aw.ds&aff_fcid=e504ff0d30804237976584ac28861318-1711069940562-07127-UneMJZVf&aff_fsk=UneMJZVf&aff_platform=aaf&sk=UneMJZVf&aff_trace_key=e504ff0d30804237976584ac28861318-1711069940562-07127-UneMJZVf&terminal_id=aa26aeb9b4294a0aace4b0a9f4391832&afSmartRedirect=y&gatewayAdapt=glo2usa) battery with a [Power Module](https://www.amazon.com/dp/B09YD5C9QC?ref=ppx_yo2ov_dt_b_product_details&th=1) as the battery solution. The power module works like a battery charge controller and a DC/DC converter in one. 
+
+   Normally the wire connection would like the left below graph. You can connect the 3.7V Lithium battery `+` to power module battery `+` and 3.7V Lithium battery `-` to power module battery `-` (Just like below right graph).
+
+   After that, you’ll have constant 5V output at the power module 5V `+` and `-` .
+
+   The power module also provides a USB-C port for you to charging the battery.
+
+   | ![img](https://i.imgur.com/Sv59xWT.png) | ![IMG_2598_s](/Users/tom/Desktop/pi-pin-pics/IMG_2598_s.jpg) |
+   | --------------------------------------- | ------------------------------------------------------------ |
+
+   We also add a switch [Panel Slide Switch](https://www.amazon.com/dp/B08SLPWDR9?ref=ppx_yo2ov_dt_b_product_details&th=1) between power module 5V `+` and Pi 5V header, which helps turn on / turn off the whole pin system. 
+
+2. Microphone:
+
+   We are using [Adafruit I2S MEMS Microphone](https://www.adafruit.com/product/3421) as the microphone module, and the graph below shows how you wire the mic to a Raspberry Pi. The graph shows the mic wiring with a big Raspberry Pi but the GPIO header is same as the Raspberry Pi Zero we used in Pi Pin.
+
+   ![sensors_pi_i2s_bb.png](https://i.imgur.com/BRpojfD.png)
+
+3. Case Assembly:
+
+   You can find 3D printed parts here ([STEP files](https://github.com/liltom-eth/pi-pin/blob/main/step)). The top part is designed around the Raspberry Pi Zero, and the bottom part is designed containing microphone, battery, power module and switch. All modules should be fitting perfectly inside the case, and you can also use tape or glue to stable them.
+
+   The graph left below shows the modules (no wiring) fitting in the case.
+
+   The graph left below shows the modules (wiring) fitting in the case.
+
+| ![IMG_7143](/Users/tom/Desktop/pi-pin-pics/IMG_7143.jpg) | ![IMG_3725](https://i.imgur.com/O7UJOI4.jpeg) |
+| -------------------------------------------------------- | --------------------------------------------- |
+
+Then you can combine two parts and use four M1x7mm screws to fasten them.
+
+| ![IMG_3741](https://i.imgur.com/kWaQIV9.jpeg) | ![IMG_3743](https://i.imgur.com/sTFf5gc.jpeg) |
+| --------------------------------------------- | --------------------------------------------- |
 
 
 
