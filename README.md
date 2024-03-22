@@ -2,11 +2,11 @@
 
 ![IMG_3746_s](https://i.imgur.com/IynuFz8.jpeg)
 
-Pi Pin is an AI Pin you can wear all day 24 hours which records the conversation you have and uses Generative AI to summarize and take notes for you.
+- Pi Pin is an AI Pin you can wear all day 24 hours which records the conversation you have and uses Generative AI to summarize and take notes for you.
 
-Pi Pin is fully open-source and affordable, it is built on a $15 Raspberry Pi Zero 2 W with a microphone and battery.
+- Pi Pin is fully open-source and affordable, it is built on a $15 Raspberry Pi Zero 2 W with a microphone and battery.
 
-It is fully hackable and you can write your own application on it.
+- It is fully hackable and you can write your own application on it.
 
 
 
@@ -27,15 +27,19 @@ Electronics are intentionally kept minimal (Pi, Microphone, Battery, Battery Cha
 
 ### Hardware List
 
-- Raspberry Pi Zero 2 W
+- Case
+  - 3D printed parts ([STL files](https://github.com/liltom-eth/pi-pin/blob/main/README.md))
+  - M1x7mm screws x 4
+- [Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/)
+  - 65mm × 30mm
 - Battery Charging Board
   - DWEII Type-C USB 5V 2A Boost Converter Step-Up Power Module Lithium Battery Charging Protection Board
   - [Amazon](https://www.amazon.com/dp/B09YD5C9QC?ref=ppx_yo2ov_dt_b_product_details&th=1)
   - Size unknown
 - Battery
   - 3.7V 600mAh 702030 Lithium Polymer
-  - Temu discontinued
-  - Size unknown
+  - Temu discontinued, Can be found everywhere, [Aliexpress](https://www.aliexpress.us/item/3256806102198497.html?src=google&src=google&albch=shopping&acnt=708-803-3821&slnk=&plac=&mtctp=&albbt=Google_7_shopping&albagn=888888&isSmbAutoCall=false&needSmbHouyi=false&albcp=20123152476&albag=&trgt=&crea=en3256806102198497&netw=x&device=c&albpg=&albpd=en3256806102198497&gad_source=1&gclid=CjwKCAjwte-vBhBFEiwAQSv_xRsccW7pTkCGBeYwrlAua_-4K2JR1EvW3KQWdi5Rkl47-qrVKlCvzhoCUtwQAvD_BwE&gclsrc=aw.ds&aff_fcid=e504ff0d30804237976584ac28861318-1711069940562-07127-UneMJZVf&aff_fsk=UneMJZVf&aff_platform=aaf&sk=UneMJZVf&aff_trace_key=e504ff0d30804237976584ac28861318-1711069940562-07127-UneMJZVf&terminal_id=aa26aeb9b4294a0aace4b0a9f4391832&afSmartRedirect=y&gatewayAdapt=glo2usa)
+  - 20mm x 30mm x 7mm
 - Switch
   - SS12F15 Panel Slide Switch 
   - [Amazon](https://www.amazon.com/dp/B08SLPWDR9?ref=ppx_yo2ov_dt_b_product_details&th=1)
