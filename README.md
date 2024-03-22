@@ -1,6 +1,29 @@
-# Pi Pin
+# Pi Pin - Open-source AI Wearable based on Raspberry Pi
 
-## Hardware 
+![IMG_3746_s](https://i.imgur.com/IynuFz8.jpeg)
+
+Pi Pin is an AI Pin you can wear all day 24 hours which records the conversation you have and uses Generative AI to summarize and take notes for you.
+
+Pi Pin is fully open-source and affordable, it is built on a $15 Raspberry Pi Zero 2 W with a microphone and battery.
+
+It is fully hackable and you can write your own application on it.
+
+
+
+## The Design
+
+The enclosure of Pi Pin is designed around the Raspberry Pi Zero, Microphone and battery to ensure (relatively) compact physical dimensions.
+
+![IMG_3720](https://i.imgur.com/8WNAKEh.jpeg)
+
+Electronics are intentionally kept minimal (Pi, Microphone, Battery, Battery Charging Module) and most of the parts are either 3D printable or available as off-the-shelf products.
+
+| ![](https://i.imgur.com/WRYmsXQ.jpeg)         | ![](https://i.imgur.com/nugJUNO.jpeg)         |
+| --------------------------------------------- | --------------------------------------------- |
+| ![IMG_3743](https://i.imgur.com/sTFf5gc.jpeg) | ![IMG_3741](https://i.imgur.com/kWaQIV9.jpeg) |
+| ![](https://i.imgur.com/dsYf3rd.jpeg)         | ![IMG_3725](https://i.imgur.com/O7UJOI4.jpeg) |
+
+## Hardware
 
 ### Hardware List
 
@@ -21,6 +44,10 @@
   - Adafruit I2S MEMS Microphone Breakout - SPH0645LM4H
   - [Adafruit](https://www.adafruit.com/product/3421)
   - 16.7mm x 12.7mm x 1.8mm
+
+### The Assembly
+
+
 
 ## Software
 
