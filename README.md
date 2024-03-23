@@ -113,9 +113,7 @@ Then you can combine two parts and use four M1x7mm screws to fasten them.
 
 ## Software
 
-### Installation
-
-Install Raspbian on an SD Card
+### Install Raspbian on an SD Card
 
 You'll need to start with Raspbian or Raspbian Lite. Get the latest version from the [Raspberry Pi Download page](https://www.raspberrypi.org/downloads/raspbian/) and follow [these instructions to install the OS image to the SD card](https://www.raspberrypi.org/documentation/installation/installing-images/README.md).
 
@@ -126,11 +124,12 @@ sudo apt-get -y update
 sudo apt-get -y upgrade
 ```
 
-Install Microphone Packages
+### Install Mic Dependencies
 
 ```bash
 sudo pip install --upgrade adafruit-python-shell
-wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/i2smic.py
+git clone https://github.com/liltom-eth/pi-pin.git
+cd pi-pin/scripts
 sudo python i2smic.py
 ```
 
@@ -143,6 +142,14 @@ The Pi model should be automatically detected.
 If you want the I2S mic module support to be loaded at boot, select Yes here. Otherwise, you'll have to manually install the module each time you want to use it.
 
 **You need to reboot for the settings to take effect.**
+
+```
+sudo reboot
+```
+
+### Test Mic Recording
+
+
 
 ```
 arecord -l
