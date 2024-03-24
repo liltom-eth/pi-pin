@@ -111,7 +111,7 @@ Then you can combine two parts and use four M1x7mm screws to fasten them.
 
 
 
-## Software
+## Env Setup
 
 ### Install Raspbian on an SD Card
 
@@ -135,7 +135,7 @@ sudo python i2smic.py
 
 Once you run the script, you will be presented with options for configuration.
 
-<img src="https://i.imgur.com/yKBsvF4.png" alt="sensors_i2smic_python_install_autoload.png" style="zoom:67%;" />
+![yKBsvF4_s](https://i.imgur.com/UZED1Ce.png)
 
 The Pi model should be automatically detected.
 
@@ -143,63 +143,117 @@ If you want the I2S mic module support to be loaded at boot, select Yes here. Ot
 
 **You need to reboot for the settings to take effect.**
 
-```
+```bash
 sudo reboot
 ```
 
 ### Test Mic Recording
 
+Use the following command to list the available input devices:
 
-
-```
+```bash
 arecord -l
 ```
 
+You should see a card entry with information similar to this:
 
+![sensors_Screenshot_from_2020-04-21_13-29-52.png](https://cdn-learn.adafruit.com/assets/assets/000/090/555/medium800/sensors_Screenshot_from_2020-04-21_13-29-52.png?1587501002)
 
-```
+Note the card number. In the screen shot above it is `0`. You can record a 6 seconds wav file in mono with this command (change the `-plughw` parameter to match the card number from above):
+
+```bash
 arecord -D plughw:0 -c1 -r 48000 -f S32_LE -t wav -V mono -v file1.wav --duration=6
-arecord -D dmic_sv -c1 -r 48000 -f S32_LE -t wav -V mono -v file1.wav --duration=6
 ```
 
+If you have speakers hooked up to the Pi, you can play the file back directly on the device:
 
-
+```none
+aplay file.wav
 ```
+
+Or, you can copy it over to your computer for playback.
+
+###  Add Capture Volume Control and Device Name
+
+You can add volume control to your mic via **alsamixer** and alsa config.
+
+```bash
 sudo apt-get install vim
 vim ~/.asoundrc
 ```
 
+and put the following in:
 
+```bash
+#This section makes a reference to your I2S hardware, adjust the card name
+# to what is shown in arecord -l after card x: before the name in []
+#You may have to adjust channel count also but stick with default first
+pcm.dmic_hw {
+	type hw
+	card sndrpii2scard
+	channels 2
+	format S32_LE
+}
 
+#This is the software volume control, it links to the hardware above and after
+# saving the .asoundrc file you can type alsamixer, press F6 to select
+# your I2S mic then F4 to set the recording volume and arrow up and down
+# to adjust the volume
+# After adjusting the volume - go for 50 percent at first, you can do
+# something like 
+# arecord -D dmic_sv -c2 -r 48000 -f S32_LE -t wav -V mono -v myfile.wav
+pcm.dmic_sv {
+	type softvol
+	slave.pcm dmic_hw
+	control {
+		name "Boost Capture Volume"
+		card sndrpii2scard
+	}
+	min_dB -3.0
+	max_dB 30.0
+}
 ```
-arecord -D dmic_sv -c2 -r 44100 -f S32_LE -t wav -V mono -v file2.wav --duration=6
+
+Now before you can change the volume you need to use the device once (this is an alsa thing)
+
+Run:
+
+```bash
+arecord -D dmic_sv -c1 -r 48000 -f S32_LE -t wav -V mono -v file1.wav --duration=6
 ```
 
+**Now** you can run **alsamixer** - press **F6** and select the I2S sound card
+
+![sensors_Screenshot_from_2020-04-21_13-58-32.png](https://cdn-learn.adafruit.com/assets/assets/000/090/559/medium800/sensors_Screenshot_from_2020-04-21_13-58-32.png?1587502991)
+
+It will complain there are no playback controls (because its for recording only).
+
+Press **F4** to switch to **Capture** mode and you should be able to adjust the volume with up/down arrow keys.
+
+![sensors_Screenshot_from_2020-04-21_14-04-35.png](https://cdn-learn.adafruit.com/assets/assets/000/090/560/medium800/sensors_Screenshot_from_2020-04-21_14-04-35.png?1587503088)
+
+### Install Python Dependencies
 
 
-```
+
+To record the audio through python scripts, you need install these dependencies:
+
+```bash
 sudo apt-get install libportaudio0 libportaudio2 libportaudiocpp0 portaudio19-dev
-
 sudo pip install pyaudio
 ```
 
+## Usage
 
+### Start Recording
 
-
-
-
-
-vad
-
-```
-cobra_demo_mic --access_key 'ygrj9sIlLrxhY802Vgq7RWMjuFxh+xo47dmSehxHBYBgvvpfWUOyTA==' --output_path ./test.wav --audio_device_index 0
-
-cobra_demo_file --access_key 'ygrj9sIlLrxhY802Vgq7RWMjuFxh+xo47dmSehxHBYBgvvpfWUOyTA==' --input_wav_path ./wav_2024_03_20-020352_AM.wav
+```bash
+python record_on_boot.py
 ```
 
 
 
-
+### Auto Start Recording when Boot Pi
 
 We will be running the Pi Zero as a wearable with a USB power supply (and not with a keyboard, mouse or monitor attached), so we need a way of starting the Python script when the Zero powers on.
 
