@@ -255,43 +255,18 @@ python record_on_boot.py
 
 ### Auto Start Recording when Boot Pi
 
-We will be running the Pi Zero as a wearable with a USB power supply (and not with a keyboard, mouse or monitor attached), so we need a way of starting the Python script when the Zero powers on.
+We will be running the Pi Zero as a wearable with a battery power supply, so we need a way of starting the Python script when the Zero powers on.
 
-```
-sudo vim ~/.config/lxsession/LXDE-pi/autostart
-
-```
-
-A file will open up, add this line at the bottom of the file to automatically start your time-lapse file using Python 3:
+Create a service file in `/lib/systemd/system/`, e.g. `pipin.service` with the following content:
 
 ```bash
-sudo /usr/bin/python /home/tom/projects/ai-pin/record_on_boot.py & > /home/tom/projects/ai-pin/log.txt 2>&1
+sudo vim /lib/systemd/system/pipin.service
 ```
 
+and put the following in:
 
-
-crontab
-
-```
-sudo crontab -e
-```
-
-
-
-```
-@reboot /bin/sleep 10; /usr/bin/python /home/tom/projects/ai-pin/record_on_boot.py >> /home/tom/projects/ai-pin/log.txt 2>&1
-```
-
-
-
-systemd
-
-```
-sudo vim /lib/systemd/system/aipin.service
-```
-
-```
-Description=RecordDescription=Record on Boot
+```bash
+Description=Record on Boot
 After=sound.target alsa-state.service
 
 [Service]
@@ -305,16 +280,15 @@ RestartSec=5
 WantedBy=multi-user.target
 ```
 
+change `User` and `ExecStart` to your own name and script path.
 
+Change the file permission and enable the service to be started when boot.
 
+```bash
+sudo chmod 644 /lib/systemd/system/pipin.service
+sudo systemctl start pipin.service
+sudo systemctl enable pipin.service
 ```
-sudo chmod 644 /lib/systemd/system/aipin.service
-sudo systemctl start aipin.service
-sudo systemctl enable aipin.service
 
-sudo systemctl stop aipin.service
-
-journalctl -u aipin.service
-
-```
+For debugging, you can use `journalctl -u pipin.service` to check the output log.
 
