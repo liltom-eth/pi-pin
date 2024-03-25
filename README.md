@@ -13,7 +13,7 @@
 ## The Design
 
 The enclosure of Pi Pin is designed around the Raspberry Pi Zero, Microphone and battery to ensure (relatively) compact physical dimensions.
-![IMG_3719]（https://i.imgur.com/PUDzEZm.png）
+![IMG_3719](https://i.imgur.com/PUDzEZm.png)
 ![IMG_3720](https://i.imgur.com/NZmAXCN.jpeg)
 
 Electronics are intentionally kept minimal (Pi, Microphone, Battery, Battery Charging Module) and most of the parts are either 3D printable or available as off-the-shelf products.
