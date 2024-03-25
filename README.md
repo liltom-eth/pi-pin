@@ -292,9 +292,9 @@ sudo systemctl enable pipin.service
 
 For debugging, you can use `journalctl -u pipin.service` to check the output log.
 
-### Use GenAI to Summary Conversation
+### Use GenAI to Summarize Conversation
 
-Before using the script, you might need install some OpenAI client dependencies on the device whcih you want to get the summary. I am using my laptop to call these AI endpoints.
+Before using the script, you might need to install some OpenAI client dependencies on the device which you want to get the summary. I am using my laptop to call these AI endpoints.
 
 ```bash
 pip install -r requirements.txt
