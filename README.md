@@ -9,10 +9,30 @@
 - It is fully hackable and you can write your own application on it.
 
 
+## Contents
+
+- [The Design](#the-design)
+- [Hardware](#hardware)
+  - [Hardware List](#hardware-list)
+  - [The Assembly](#the-assembly)
+    - [Wiring Checklist](#wiring-checklist)
+    - [Step by Step Assembly](#step-by-step-assembly)
+- [Env Setup](#env-setup)
+  - [Install Raspbian on an SD Card](#install-raspbian-on-an-sd-card)
+  - [Install Mic Dependencies](#install-mic-dependencies)
+  - [Test Mic Recording](#test-mic-recording)
+  - [Add Capture Volume Control and Device Name](#add-capture-volume-control-and-device-name)
+  - [Install Python Dependencies](#install-python-dependencies)
+- [Usage](#usage)
+  - [Start Recording](#start-recording)
+  - [Auto Start Recording when Boot Pi](#auto-start-recording-when-boot-pi)
+  - [Use GenAI to Summarize Conversation](#use-genai-to-summarize-conversation)
+
 
 ## The Design
 
-The enclosure of Pi Pin is designed around the Raspberry Pi Zero, Microphone and battery to ensure (relatively) compact physical dimensions.
+The enclosure of Pi Pin is designed around the Raspberry Pi Zero, Microphone, and battery to ensure (relatively) compact physical dimensions.
+
 ![IMG_3719](https://i.imgur.com/PUDzEZm.png)
 ![IMG_3720](https://i.imgur.com/NZmAXCN.jpeg)
 
@@ -80,7 +100,7 @@ The graph below shows all wiring you need for Pi Pin.
 
    After that, you’ll have constant 5V output at the power module 5V `+` and `-` .
 
-   The power module also provides a USB-C port for you to charging the battery.
+   The power module also provides a USB-C port for you to charge the battery.
 
    | ![img](https://i.imgur.com/Sv59xWT.png) | ![IMG_2598_s](https://i.imgur.com/zFBTA5c.jpeg) |
    | --------------------------------------- | ----------------------------------------------- |
@@ -89,7 +109,7 @@ The graph below shows all wiring you need for Pi Pin.
 
 2. Microphone:
 
-   We are using [Adafruit I2S MEMS Microphone](https://www.adafruit.com/product/3421) as the microphone module, and the graph below shows how you wire the mic to a Raspberry Pi. The graph shows the mic wiring with a big Raspberry Pi but the GPIO header is same as the Raspberry Pi Zero we used in Pi Pin.
+   We are using [Adafruit I2S MEMS Microphone](https://www.adafruit.com/product/3421) as the microphone module, and the graph below shows how you wire the mic to a Raspberry Pi. The graph shows the mic wiring with a big Raspberry Pi but the GPIO header is the same as the Raspberry Pi Zero we used in Pi Pin.
 
    ![sensors_pi_i2s_bb.png](https://i.imgur.com/BRpojfD.png)
 
@@ -233,8 +253,6 @@ Press **F4** to switch to **Capture** mode and you should be able to adjust the 
 ![sensors_Screenshot_from_2020-04-21_14-04-35.png](https://cdn-learn.adafruit.com/assets/assets/000/090/560/medium800/sensors_Screenshot_from_2020-04-21_14-04-35.png?1587503088)
 
 ### Install Python Dependencies
-
-
 
 To record the audio through python scripts, you need install these dependencies:
 
