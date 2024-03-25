@@ -292,3 +292,20 @@ sudo systemctl enable pipin.service
 
 For debugging, you can use `journalctl -u pipin.service` to check the output log.
 
+### Use GenAI to Summary Conversation
+
+Before using the script, you might need install some OpenAI client dependencies on the device whcih you want to get the summary. I am using my laptop to call these AI endpoints.
+
+```bash
+pip install -r requirements.txt
+```
+
+`summarize.ipynb` shows you an example using `OpenAI` `whisper` for speech2text and then use `OpenAI` `gpt4` to summarize the transcription of your conversation.
+
+This is a summary I got when I wore the Pi-Pin listenning to a tech news (the audio recording can be found `./recording/wav_2024_03_20-065147_PM.wav`). 
+
+```text
+The report discusses the significant comeback of tech conferences in the Bay Area, focusing on a particularly large event in downtown San Jose centered around artificial intelligence. Tens of thousands of attendees created a scene reminiscent of a major concert outside the SAP Center, highlighting the immense interest and investment in AI. NVIDIA's GTC convention is spotlighted as a major contributor to this momentum, drawing a crowd of around 20,000 people and significantly benefiting local businesses. NVIDIA CEO Jensen Wang spoke on the transformative impact of AI across various industries, emphasizing the computer as a crucial societal tool. The event has led to a notable economic boost for the area, with restaurants and venues experiencing high demand. This resurgence of tech conferences is likened to the phenomenon of "revenge travel" post-COVID lockdowns, indicating a strong desire within the tech community to reconnect, explore new technologies, and invest in the industry's future.
+```
+
+The transcription and summary can also be found at `./recording/` folder.
