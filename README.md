@@ -182,7 +182,7 @@ You should see a card entry with information similar to this:
 Note the card number. In the screen shot above it is `0`. You can record a 6 seconds wav file in mono with this command (change the `-plughw` parameter to match the card number from above):
 
 ```bash
-arecord -D plughw:0 -c1 -r 48000 -f S32_LE -t wav -V mono -v file1.wav --duration=6
+arecord -D dmic_sv -c2 -r 44100 -f S32_LE -t wav -V mono -v file.wav --duration=6
 ```
 
 If you have speakers hooked up to the Pi, you can play the file back directly on the device:
@@ -252,6 +252,16 @@ Press **F4** to switch to **Capture** mode and you should be able to adjust the 
 
 ![sensors_Screenshot_from_2020-04-21_14-04-35.png](https://cdn-learn.adafruit.com/assets/assets/000/090/560/medium800/sensors_Screenshot_from_2020-04-21_14-04-35.png?1587503088)
 
+Sometimes `~/.asoundrc` [disappears](https://forums.raspberrypi.com/viewtopic.php?t=295008) after reboot, you need to setup `raspi-config` to boot to the console rather than boot to the desktop.
+
+```bash
+sudo raspi-config
+```
+
+![Screenshot 2024-03-29 at 12.52.56 AM](https://i.imgur.com/B6yAOvy.png)
+
+![Screenshot 2024-03-29 at 12.54.37 AM](https://i.imgur.com/q6LSEs5.png)
+
 ### Install Python Dependencies
 
 To record the audio through python scripts, you need install these dependencies:
@@ -266,7 +276,7 @@ sudo pip install pyaudio
 ### Start Recording
 
 ```bash
-python record_on_boot.py
+python record_on_boot.py --output_folder ./recording
 ```
 
 
@@ -290,7 +300,7 @@ After=sound.target alsa-state.service
 [Service]
 User=tom
 Type=simple
-ExecStart=/usr/bin/python /home/tom/projects/ai-pin/record_on_boot.py
+ExecStart=/usr/bin/python /home/tom/projects/pi-pin/record_on_boot.py --output_folder /home/tom/projects/pi-pin/recording/
 Restart=on-failure
 RestartSec=5
 
@@ -308,7 +318,9 @@ sudo systemctl start pipin.service
 sudo systemctl enable pipin.service
 ```
 
-For debugging, you can use `journalctl -u pipin.service` to check the output log.
+For debugging, you can use `sudo systemctl status pipin.service` to check the status and use `journalctl -u pipin.service` to check the output log.
+
+To manually stop the service, use `sudo systemctl stop pipin.service` .
 
 ### Use GenAI to Summarize Conversation
 
